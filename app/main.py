@@ -1,18 +1,13 @@
 from fastapi import FastAPI
+from app.core.database import engine
+from app.users.models import Base
+from app.users.routes import router as user_router
 
+# Create tables
+Base.metadata.create_all(bind=engine)
+
+# FastAPI app
 app = FastAPI()
 
-# Root route
-@app.get("/")
-def root():
-    return {"message": "Welcome to the root route!"}
+app.include_router(user_router, prefix="/users", tags=["Users"])
 
-# Route to display info for items
-@app.get("/items/")
-def items():
-    return {"message": "Welcome to the items route!"}
-
-# Route to display info for updating items
-@app.get("/items/update/")
-def update_item():
-    return {"message": "Welcome to the update item route!"}
