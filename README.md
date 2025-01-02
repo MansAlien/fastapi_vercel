@@ -1,5 +1,6 @@
 Project structure:
 
+```
 fastapi-postgres/
 ├── app/
 │   ├── auth/
@@ -31,4 +32,4 @@ fastapi-postgres/
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
-
+```
