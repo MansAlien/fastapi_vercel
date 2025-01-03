@@ -1,13 +1,10 @@
 from fastapi import FastAPI
-from app.core.database import engine
-from app.users.models import Base
-from app.users.routes import router as user_router
+from app.config.database import engine, Base
+from app.posts import router
 
-# Create tables
 Base.metadata.create_all(bind=engine)
 
-# FastAPI app
 app = FastAPI()
 
-app.include_router(user_router, prefix="/users", tags=["Users"])
+app.include_router(router.router, prefix="/api", tags=["posts"])
 
